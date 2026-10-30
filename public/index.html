@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="EFMC†2 Urban Collective — precision-crafted streetwear. Wear the abyss.">
+  <title>EFMC†2 | Urban Collective</title>
+  <style>
+    :root {
+      --bg: #090909; --panel: #111; --muted: #a7a7a7; --white: #f5f3f0;
+      --red: #b51f32; --line: #292929; --max: 1200px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--white); font-family: Arial, Helvetica, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; }
+    button { font: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: auto; }
+    .announcement { background: var(--red); color: white; text-align: center; padding: 10px 15px; font-size: 11px; letter-spacing: .16em; font-weight: 800; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(8,8,8,.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-size: 25px; font-weight: 950; letter-spacing: -.07em; }
+    .brand span { color: var(--red); }
+    .navlinks { display: flex; gap: 28px; color: #ddd; font-size: 12px; text-transform: uppercase; letter-spacing: .13em; }
+    .navlinks a:hover, footer a:hover { color: #ef5365; }
+    .cart-button, .btn { border: 1px solid var(--white); color: var(--white); background: transparent; padding: 12px 18px; cursor: pointer; text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: .12em; transition: .2s; }
+    .cart-button:hover, .btn:hover { background: var(--white); color: #090909; }
+    .hero { min-height: 590px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 35px; padding-top: 55px; padding-bottom: 55px; }
+    .eyebrow { color: #ef5365; font-size: 11px; letter-spacing: .25em; font-weight: 800; }
+    h1 { font-size: clamp(48px, 7vw, 92px); line-height: .88; letter-spacing: -.075em; margin: 20px 0; text-transform: uppercase; }
+    h1 em { color: var(--red); font-style: normal; }
+    .hero p { color: #bdbdbd; line-height: 1.8; max-width: 480px; }
+    .hero-art img { display: block; width: 100%; max-height: 560px; object-fit: cover; border: 1px solid #333; }
+    .hero-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+    .btn.primary { background: var(--red); border-color: var(--red); }
+    .btn.primary:hover { background: #e0344a; color: white; border-color: #e0344a; }
+    .section { padding: 85px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 30px; }
+    h2 { font-size: clamp(30px, 4vw, 48px); letter-spacing: -.06em; text-transform: uppercase; margin: 10px 0 0; }
+    .section-head p { color: var(--muted); max-width: 380px; line-height: 1.6; font-size: 13px; }
+    .campaign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .campaign { position: relative; overflow: hidden; background: #151515; border: 1px solid #292929; }
+    .campaign img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; transition: transform .5s; }
+    .campaign:hover img { transform: scale(1.025); }
+    .campaign-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 35px 22px 20px; background: linear-gradient(transparent, rgba(0,0,0,.9)); }
+    .campaign-label strong { display: block; font-size: clamp(18px, 3vw, 28px); text-transform: uppercase; }
+    .campaign-label span { color: #ddd; font-size: 11px; letter-spacing: .16em; }
+    .products { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .product { background: var(--panel); border: 1px solid var(--line); padding: 24px; }
+    .product-top { display: flex; justify-content: space-between; gap: 15px; align-items: start; }
+    .product h3 { margin: 0; text-transform: uppercase; font-size: 19px; }
+    .price { color: #f05b6d; font-weight: 900; white-space: nowrap; }
+    .product p { color: var(--muted); line-height: 1.7; font-size: 13px; min-height: 45px; }
+    .product-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 18px; }
+    select, input { background: #080808; color: white; border: 1px solid #444; padding: 11px; min-width: 100px; }
+    .add { background: var(--red); border: 1px solid var(--red); color: white; padding: 12px 16px; cursor: pointer; font-size: 11px; font-weight: 900; letter-spacing: .1em; }
+    .add:hover { background: #e0344a; }
+    .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 45px; align-items: start; }
+    .about-copy { color: #bbb; line-height: 1.9; max-width: 650px; }
+    .manifesto { color: white; font-size: clamp(25px, 4vw, 43px); font-weight: 900; line-height: 1.1; text-transform: uppercase; letter-spacing: -.04em; }
+    .manifesto span { color: var(--red); }
+    .shipping { text-align: center; background: #171010; border-top: 1px solid #4a1b22; border-bottom: 1px solid #4a1b22; padding: 34px 15px; }
+    .shipping strong { display: block; font-size: clamp(20px, 3vw, 30px); text-transform: uppercase; }
+    .shipping small { color: #c8aeb1; letter-spacing: .15em; }
+    footer { padding: 45px 0; color: #aaa; }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .footer-brand { color: white; font-weight: 950; font-size: 23px; }
+    .footer-brand span { color: var(--red); }
+    .fine { font-size: 11px; line-height: 1.8; }
+    .cart-panel { position: fixed; inset: 0 0 0 auto; width: min(420px, 100%); background: #101010; z-index: 30; padding: 25px; transform: translateX(105%); transition: transform .25s; border-left: 1px solid #333; overflow-y: auto; }
+    .cart-panel.open { transform: translateX(0); }
+    .cart-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; }
+    .cart-head h3 { text-transform: uppercase; }
+    .close { background: none; border: 0; color: white; font-size: 26px; cursor: pointer; }
+    .cart-item { display: flex; justify-content: space-between; gap: 15px; padding: 16px 0; border-bottom: 1px solid #292929; font-size: 13px; }
+    .cart-total { display: flex; justify-content: space-between; font-weight: 900; margin: 25px 0; }
+    .checkout { display: block; width: 100%; text-align: center; background: var(--red); color: white; border: 0; padding: 15px; font-weight: 900; cursor: pointer; letter-spacing: .1em; }
+    .wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 15; display: flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 13px 18px; border-radius: 999px; font-size: 11px; font-weight: 900; letter-spacing: .1em; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+    .wa-float:hover { background: #1ebe5b; }
+    .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 20; }
+    .overlay.show { display: block; }
+    @media (max-width: 760px) {
+      .nav { min-height: 66px; } .navlinks { gap: 13px; font-size: 10px; } .brand { font-size: 21px; }
+      .cart-button { padding: 10px; font-size: 10px; }
+      .hero { grid-template-columns: 1fr; padding-top: 48px; gap: 25px; }
+      .hero-art { order: -1; } .hero-art img { max-height: 430px; }
+      .campaign-grid, .products, .about { grid-template-columns: 1fr; }
+      .section { padding: 60px 0; } .section-head { display: block; }
+    }
+    @media (max-width: 390px) { .navlinks { gap: 9px; } .navlinks a { font-size: 9px; } .brand { font-size: 18px; } }
+  </style>
+</head>
+<body>
+  <div class="announcement">FREE SHIPPING ON ALL ORDERS OVER ₦150,000</div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home">EFMC<span>†2</span></a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#shop">Shop</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </nav>
+      <button class="cart-button" id="openCart">Bag (<span id="cartCount">0</span>)</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="wrap hero">
+      <div>
+        <div class="eyebrow">EFMC†2 URBAN COLLECTIVE / EST. 2023</div>
+        <h1>Wear the <em>abyss.</em></h1>
+        <p>Precision-crafted streetwear. Dark energy, considered details and everyday comfort. Make your presence felt.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#shop">Shop the collection</a>
+          <a class="btn" href="#campaigns">Explore campaigns</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="/.netlify/images?url=/assets/dark-fire-campaign.png&w=900&fm=webp" width="928" height="1152" fetchpriority="high" alt="EFMC†2 Dark Fire black graphic T-shirt campaign">
+      </div>
+    </section>
+
+    <section class="section" id="campaigns">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">CAMPAIGN / VISUAL STORIES</div><h2>Enter the darkness.</h2></div>
+          <p>Statement graphics. Strong silhouettes. Built to stand apart.</p>
+        </div>
+        <div class="campaign-grid">
+          <a class="campaign" href="#shop">
+            <img src="/.netlify/images?url=/assets/white-essentials-campaign.png&w=800&fm=webp" width="1024" height="1024" loading="lazy" alt="EFMC†2 white graphic T-shirt and black joggers campaign">
+            <div class="campaign-label"><strong>Essentials / Monochrome</strong><span>SHOP THE EVERYDAY UNIFORM ↗</span></div>
+          </a>
+          <a class="campaign" href="#shop">
+            <img src="/.netlify/images?url=/assets/demon-division-campaign.png&w=800&fm=webp" width="1024" height="1024" loading="lazy" alt="EFMC†2 Demon Division red and black graphic T-shirt front and back">
+            <div class="campaign-label"><strong>Demon Division</strong><span>DARK FIRE / LIMITED CAMPAIGN ↗</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">THE ESSENTIALS COLLECTION</div><h2>Built for the daily rotation.</h2></div>
+          <p>Heavyweight feel. Tailored comfort. Minimal compromise.</p>
+        </div>
+        <div class="products">
+          <article class="product">
+            <div class="product-top"><h3>EFMC†2 Signature Tee</h3><div class="price">₦30,000</div></div>
+            <p>Heavyweight cotton with a tailored fit, signature chest emblem and bold EFMC†2 identity.</p>
+            <div class="product-controls">
+              <select aria-label="Signature Tee colour" id="teeColor"><option>Onyx Black</option><option>Pristine White</option></select>
+              <select aria-label="Signature Tee size" id="teeSize"><option value="S">S</option><option value="M" selected>M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option></select>
+              <button class="add" onclick="addToCart('EFMC†2 Signature Tee',30000,'teeColor','teeSize')">ADD TO BAG</button>
+            </div>
+          </article>
+          <article class="product">
+            <div class="product-top"><h3>EFMC†2 Performance Joggers</h3><div class="price">₦50,000</div></div>
+            <p>Ergonomic tapered cut, deep-pocket utility and EFMC†2 side-leg detailing.</p>
+            <div class="product-controls">
+              <select aria-label="Joggers colour" id="jogColor"><option>Onyx Black</option><option>Pristine White</option></select>
+              <select aria-label="Joggers size" id="jogSize"><option value="S">S</option><option value="M" selected>M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option></select>
+              <button class="add" onclick="addToCart('EFMC†2 Performance Joggers',50000,'jogColor','jogSize')">ADD TO BAG</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about">
+        <div><div class="eyebrow">THE EFMC†2 STANDARD</div><h2>More than a uniform.</h2></div>
+        <div>
+          <div class="manifesto">Move through the city. Own your <span>space.</span></div>
+          <p class="about-copy">Designed for the modern nomad, EFMC†2 bridges the gap between comfort and a high-end streetwear aesthetic. Whether you're moving through the city or owning the downtime, our pieces are made to become the foundation of your daily rotation.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="shipping"><strong>Free shipping on all orders over ₦150,000</strong><small>THE EFMC†2 EXPERIENCE / BUILT TO MOVE</small></div>
+  </main>
+
+  <footer id="contact">
+    <div class="wrap footer-row">
+      <div><div class="footer-brand">EFMC<span>†2</span></div><div class="fine">© <span id="year"></span> EFMC†2 Urban Collective. All rights reserved.</div></div>
+      <div class="fine">STAY CONNECTED<br><a href="https://instagram.com/EFMC2_Official" target="_blank" rel="noopener">@EFMC2_Official ↗</a></div>
+      <div class="fine">CONTACT<br><a href="mailto:orders@efmc2.com">orders@efmc2.com</a><br><a href="https://wa.me/2347059775791" target="_blank" rel="noopener">WhatsApp: +234 705 977 5791 ↗</a></div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/2347059775791?text=Hello%20EFMC%E2%80%A02%2C%20I%27d%20like%20to%20ask%20about%20your%20collection." target="_blank" rel="noopener" aria-label="Chat with EFMC†2 on WhatsApp">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+    WHATSAPP
+  </a>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-panel" id="cartPanel" aria-label="Shopping bag">
+    <div class="cart-head"><h3>Your bag</h3><button class="close" id="closeCart" aria-label="Close bag">×</button></div>
+    <div id="cartItems"><p class="fine">Your bag is currently empty.</p></div>
+    <div class="cart-total"><span>Total</span><span id="cartTotal">₦0</span></div>
+    <button class="checkout" onclick="checkout()">ORDER VIA WHATSAPP</button>
+    <p class="fine">Checkout opens WhatsApp with your order summary sent to +234 705 977 5791.</p>
+  </aside>
+
+  <script>
+    const cart = [];
+    const formatNaira = amount => '₦' + amount.toLocaleString('en-NG');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function addToCart(name, price, colorId, sizeId) {
+      const color = document.getElementById(colorId).value;
+      const size = document.getElementById(sizeId).value;
+      cart.push({name, price, color, size});
+      renderCart();
+      openCart();
+    }
+    function renderCart() {
+      document.getElementById('cartCount').textContent = cart.length;
+      const target = document.getElementById('cartItems');
+      target.innerHTML = '';
+      if (!cart.length) {
+        target.innerHTML = '<p class="fine">Your bag is currently empty.</p>';
+      } else {
+        cart.forEach((item, index) => {
+          const row = document.createElement('div');
+          row.className = 'cart-item';
+          const details = document.createElement('span');
+          details.append(item.name, document.createElement('br'), `${item.color} / Size ${item.size}`);
+          const price = document.createElement('strong');
+          price.textContent = formatNaira(item.price);
+          const remove = document.createElement('button');
+          remove.textContent = '×';
+          remove.className = 'close';
+          remove.setAttribute('aria-label', 'Remove item');
+          remove.onclick = () => { cart.splice(index, 1); renderCart(); };
+          row.append(details, price, remove);
+          target.appendChild(row);
+        });
+      }
+      document.getElementById('cartTotal').textContent = formatNaira(cart.reduce((sum, item) => sum + item.price, 0));
+    }
+    function openCart() {
+      document.getElementById('cartPanel').classList.add('open');
+      document.getElementById('overlay').classList.add('show');
+    }
+    function closeCart() {
+      document.getElementById('cartPanel').classList.remove('open');
+      document.getElementById('overlay').classList.remove('show');
+    }
+    document.getElementById('openCart').addEventListener('click', openCart);
+    document.getElementById('closeCart').addEventListener('click', closeCart);
+    document.getElementById('overlay').addEventListener('click', closeCart);
+
+    function checkout() {
+      if (!cart.length) { alert('Your bag is empty. Add an item first.'); return; }
+      const whatsappNumber = '2347059775791';
+      const lines = cart.map((item, i) => `${i + 1}. ${item.name} — ${item.color}, size ${item.size} — ${formatNaira(item.price)}`);
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      const message = `Hello EFMC†2, I would like to place this order:\n${lines.join('\n')}\nTotal: ${formatNaira(total)}\nPlease confirm delivery details.`;
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+    }
+  </script>
+</body>
+</html>
